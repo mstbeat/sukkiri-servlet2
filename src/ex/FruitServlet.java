@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class FruitServlet
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/FruitServlet")
 public class FruitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,7 +32,9 @@ public class FruitServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		Fruit f = new Fruit("いちご", 700);
-		request.setAttribute("fruit", f);
+		HttpSession session = request.getSession();
+		session.setAttribute("fruit", f);
+		// request.setAttribute("fruit", f);
 		RequestDispatcher d = request.getRequestDispatcher("/WEB-INF/ex/fruit.jsp");
 		d.forward(request, response);
 	}
